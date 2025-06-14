@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+  <!-- Default to dark theme -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Full-Stack Launchpad AI Pro: Full-Stack Boilerplate Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: [
+                "Inter",
+                "-apple-system",
+                "BlinkMacSystemFont",
+                '"Segoe UI"',
+                "Helvetica",
+                "Arial",
+                "sans-serif",
+                '"Apple Color Emoji"',
+                '"Segoe UI Emoji"',
+              ],
+            },
+            colors: {
+              gh_dark_bg: "#0d1117",
+              gh_dark_header: "#161b22",
+              gh_dark_card: "#161b22",
+              gh_dark_border: "#30363d",
+              gh_dark_input_bg: "#0d1117",
+              gh_dark_text_primary: "#c9d1d9",
+              gh_dark_text_secondary: "#8b949e",
+              gh_dark_icon: "#8b949e",
+
+              gh_light_bg: "#ffffff",
+              gh_light_header: "#f6f8fa",
+              gh_light_card: "#ffffff",
+              gh_light_border: "#d0d7de",
+              gh_light_input_bg: "#f6f8fa",
+              gh_light_text_primary: "#1f2328",
+              gh_light_text_secondary: "#57606a",
+              gh_light_icon: "#57606a",
+
+              gh_accent_blue: {
+                DEFAULT: "#2f81f7",
+                hover: "#58a6ff",
+                text: "#ffffff", 
+              },
+              gh_accent_green: {
+                DEFAULT: "#2da44e",
+                hover: "#31b555", 
+                text: "#ffffff",
+              },
+              gh_btn_secondary_bg_dark: "#21262d",
+              gh_btn_secondary_border_dark: "#30363d",
+              gh_btn_secondary_hover_bg_dark: "#30363d",
+              gh_btn_secondary_hover_border_dark: "#8b949e",
+              gh_btn_secondary_text_dark: "#c9d1d9",
+
+              gh_btn_secondary_bg_light: "#f6f8fa",
+              gh_btn_secondary_border_light: "rgba(27,31,36,0.15)",
+              gh_btn_secondary_hover_bg_light: "#f3f4f6",
+              gh_btn_secondary_hover_border_light: "rgba(27,31,36,0.15)",
+              gh_btn_secondary_text_light: "#1f2328",
+
+              danger: {
+                DEFAULT: "#cf222e", 
+                text_dark: "#f85149",
+                text_light: "#cf222e",
+                bg_dark: "rgba(248, 81, 73, 0.1)",
+                bg_light: "rgba(207, 34, 46, 0.1)",
+                border_dark: "rgba(248, 81, 73, 0.4)",
+                border_light: "rgba(207, 34, 46, 0.4)",
+              },
+            },
+            typography: (theme) => ({
+              DEFAULT: {
+                css: {
+                  "--tw-prose-body": theme("colors.gh_light_text_primary"),
+                  "--tw-prose-headings": theme("colors.gh_light_text_primary"),
+                  "--tw-prose-lead": theme("colors.gh_light_text_secondary"),
+                  "--tw-prose-links": theme("colors.gh_accent_blue.DEFAULT"),
+                  "--tw-prose-bold": theme("colors.gh_light_text_primary"),
+                  "--tw-prose-counters": theme("colors.gh_light_text_secondary"),
+                  "--tw-prose-bullets": theme("colors.gh_light_text_secondary"),
+                  "--tw-prose-hr": theme("colors.gh_light_border"),
+                  "--tw-prose-quotes": theme("colors.gh_light_text_primary"),
+                  "--tw-prose-quote-borders": theme("colors.gh_light_border"), 
+                  "--tw-prose-captions": theme("colors.gh_light_text_secondary"),
+                  "--tw-prose-code": theme("colors.gh_light_text_primary"), 
+                  "--tw-prose-pre-code": theme("colors.gh_light_text_primary"), 
+                  "--tw-prose-pre-bg": theme("colors.gh_light_input_bg"), 
+                  "--tw-prose-th-borders": theme("colors.gh_light_border"),
+                  "--tw-prose-td-borders": theme("colors.gh_light_border"),
+                  "code::before": { content: '""' },
+                  "code::after": { content: '""' },
+                  code: {
+                    backgroundColor: "rgba(175,184,193,0.2)", 
+                    padding: "0.2em 0.4em",
+                    borderRadius: "6px",
+                    fontSize: "85%",
+                  },
+                  pre: {
+                    borderRadius: "6px",
+                    border: `1px solid ${theme("colors.gh_light_border")}`,
+                  },
+                  "pre code": {
+                    backgroundColor: "transparent",
+                    padding: "0",
+                    fontSize: "100%",
+                    fontWeight: "normal",
+                    border: "none",
+                  },
+                  h3: {
+                    fontSize: "1.10em", 
+                    fontWeight: "600",
+                    marginTop: "1.2em",
+                    marginBottom: "0.6em",
+                  },
+                },
+              },
+              invert: {
+                
+                css: {
+                  "--tw-prose-body": theme("colors.gh_dark_text_primary"),
+                  "--tw-prose-headings": theme("colors.gh_dark_text_primary"),
+                  "--tw-prose-lead": theme("colors.gh_dark_text_secondary"),
+                  "--tw-prose-links": theme("colors.gh_accent_blue.DEFAULT"),
+                  "--tw-prose-bold": theme("colors.gh_dark_text_primary"),
+                  "--tw-prose-counters": theme("colors.gh_dark_text_secondary"),
+                  "--tw-prose-bullets": theme("colors.gh_dark_text_secondary"),
+                  "--tw-prose-hr": theme("colors.gh_dark_border"),
+                  "--tw-prose-quotes": theme("colors.gh_dark_text_primary"),
+                  "--tw-prose-quote-borders": theme("colors.gh_dark_border"), 
+                  "--tw-prose-captions": theme("colors.gh_dark_text_secondary"),
+                  "--tw-prose-code": theme("colors.gh_dark_text_primary"), 
+                  "--tw-prose-pre-code": theme("colors.gh_dark_text_primary"), 
+                  "--tw-prose-pre-bg": "#161b22", 
+                  "--tw-prose-th-borders": theme("colors.gh_dark_border"),
+                  "--tw-prose-td-borders": theme("colors.gh_dark_border"),
+                  code: {
+                    backgroundColor: "rgba(110,118,129,0.2)", 
+                    color: theme("colors.gh_dark_text_primary"),
+                  },
+                  pre: {
+                    borderRadius: "6px",
+                    border: `1px solid ${theme("colors.gh_dark_border")}`,
+                  },
+                  "pre code": {
+                    backgroundColor: "transparent",
+                    color: "inherit", 
+                    border: "none",
+                  },
+                },
+              },
+            }),
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji";
+        @apply bg-gh_light_bg text-gh_light_text_primary dark:bg-gh_dark_bg dark:text-gh_dark_text_primary transition-colors duration-200 leading-relaxed;
+        font-size: 14px; 
+      }
+      ::-webkit-scrollbar {
+        width: 12px;
+        height: 12px;
+      }
+      ::-webkit-scrollbar-track {
+        @apply bg-transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        @apply bg-gh_light_border dark:bg-gh_dark_border rounded-md;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        @apply bg-slate-400 dark:bg-slate-600;
+      }
+      .simple-scrollbar::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      .simple-scrollbar::-webkit-scrollbar-thumb {
+        @apply bg-gh_light_border dark:bg-gh_dark_border rounded-sm;
+      }
+      .simple-scrollbar::-webkit-scrollbar-thumb:hover {
+        @apply bg-slate-400 dark:bg-slate-500;
+      }
+
+      .gh-header {
+        @apply bg-gh_light_header dark:bg-gh_dark_header border-b border-gh_light_border dark:border-gh_dark_border;
+      }
+      .gh-card {
+        @apply bg-gh_light_card dark:bg-gh_dark_card rounded-md border border-gh_light_border dark:border-gh_dark_border;
+      }
+      .gh-input-base {
+        @apply block w-full bg-gh_light_input_bg dark:bg-gh_dark_input_bg text-gh_light_text_primary dark:text-gh_dark_text_primary 
+               border border-gh_light_border dark:border-gh_dark_border 
+               rounded-md shadow-sm px-3 py-2 text-sm 
+               focus:ring-2 focus:ring-gh_accent_blue/70 focus:border-gh_accent_blue/70 outline-none transition-all duration-150;
+      }
+      .gh-select-base {
+        @apply gh-input-base appearance-none;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2357606a'%3e%3cpath d='M12.78 5.22a.749.749 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.06 0L3.22 6.28a.749.749 0 1 1 1.06-1.06L8 8.939l3.72-3.719a.749.749 0 0 1 1.06 0Z'/%3e%3c/svg%3e"); 
+        background-position: right 0.5rem center;
+        background-repeat: no-repeat;
+        background-size: 16px 16px;
+        padding-right: 2.5rem;
+      }
+      .dark .gh-select-base {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%238b949e'%3e%3cpath d='M12.78 5.22a.749.749 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.06 0L3.22 6.28a.749.749 0 1 1 1.06-1.06L8 8.939l3.72-3.719a.749.749 0 0 1 1.06 0Z'/%3e%3c/svg%3e"); 
+      }
+
+      .gh-btn {
+        /* Replaces .btn */
+        @apply inline-flex justify-center items-center px-4 py-[7px] border text-sm font-medium rounded-md shadow-sm 
+               focus:outline-none focus:ring-2 focus:ring-gh_accent_blue/50 focus:ring-offset-2 dark:focus:ring-offset-gh_dark_bg 
+               disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-150;
+      }
+      .gh-btn-primary {
+        @apply gh-btn bg-gh_accent_green text-gh_accent_green-text hover:bg-gh_accent_green-hover border-transparent;
+      }
+      .gh-btn-secondary {
+        @apply gh-btn bg-gh_btn_secondary_bg_light text-gh_btn_secondary_text_light border-gh_btn_secondary_border_light hover:bg-gh_btn_secondary_hover_bg_light
+               dark:bg-gh_btn_secondary_bg_dark dark:text-gh_btn_secondary_text_dark dark:border-gh_btn_secondary_border_dark dark:hover:bg-gh_btn_secondary_hover_bg_dark dark:hover:border-gh_btn_secondary_hover_border_dark;
+      }
+      .selection-highlight {
+        @apply selection:bg-gh_accent_blue/70 selection:text-white;
+      }
+      .prose .code-block-wrapper pre,
+      .prose .code-block-wrapper code {
+        background-color: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "react/": "https://esm.sh/react@^19.1.0/",
+          "react": "https://esm.sh/react@^19.1.0",
+          "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+          "lucide-react": "https://esm.sh/lucide-react@^0.417.0",
+          "@reduxjs/toolkit": "https://esm.sh/@reduxjs/toolkit@^2.0.0",
+          "react-redux": "https://esm.sh/react-redux@^9.1.2"
+        }
+      }
+    </script>
+  </head>
+  <body
+    class="selection-highlight bg-gradient-to-br from-[#f6f8fa] via-[#e9efff] to-[#d0e2ff] dark:from-[#0d1117] dark:via-[#161b22] dark:to-[#23272e] min-h-screen flex flex-col transition-colors duration-500"
+  >
+    <div id="root" class="flex-grow flex flex-col justify-center items-center animate-fadein"></div>
+    <script type="module" src="/src/index.tsx"></script>
+    <style>
+      @keyframes fadein {
+        from {
+          opacity: 0;
+          transform: translateY(30px) scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      .animate-fadein {
+        animation: fadein 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .card-animate {
+        transition: box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1), transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .card-animate:hover {
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18), 0 1.5px 6px 0 rgba(47, 129, 247, 0.08);
+        transform: translateY(-2px) scale(1.015);
+      }
+      .btn-animate {
+        transition: background 0.2s, color 0.2s, transform 0.15s;
+      }
+      .btn-animate:active {
+        transform: scale(0.97);
+      }
+      .input-animate,
+      .select-animate {
+        transition: border 0.2s, box-shadow 0.2s;
+      }
+      .input-animate:focus,
+      .select-animate:focus {
+        box-shadow: 0 0 0 2px #2f81f7cc;
+        border-color: #2f81f7;
+      }
+      .glass {
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(8px) saturate(1.2);
+        border: 1.5px solid rgba(47, 129, 247, 0.08);
+      }
+      .dark .glass {
+        background: rgba(22, 27, 34, 0.75);
+        border: 1.5px solid rgba(47, 129, 247, 0.12);
+      }
+      /* Floating animation for icons */
+      .float-anim {
+        animation: float 2.5s ease-in-out infinite alternate;
+      }
+      @keyframes float {
+        from {
+          transform: translateY(0);
+        }
+        to {
+          transform: translateY(-10px);
+        }
+      }
+    </style>
+  </body>
+</html>

@@ -48,79 +48,34 @@ Configurações do Projeto Solicitadas:
 }
 
 export async function generateBoilerplate(config: ProjectConfiguration): Promise<{ sections: Record<string, string> }> {
-  const apiKey = process.env.AI_KEY;
-  const endpoint = process.env.AI_ENDPOINT;
+  const endpoint = process.env.VITE_BACKEND_URL;
 
-  if (!apiKey) {
-    throw new Error("Chave da API (AI_KEY) não configurada.");
-  }
   if (!endpoint) {
-    throw new Error("Endpoint da API (AI_ENDPOINT) não configurado.");
+    throw new Error("Endpoint da API (VITE_BACKEND_URL) não configurado.");
   }
-
-  const userPrompt = constructUserPrompt(config);
-
-  const requestBody = {
-    messages: [
-      {
-        role: "system",
-        content:
-          "Você é um assistente de IA especialista em gerar estruturas de projeto (boilerplates) e guias detalhados para desenvolvimento full-stack. O RETORNO DEVE SER EXCLUSIVAMENTE UM JSON VÁLIDO, sem texto antes ou depois.",
-      },
-      {
-        role: "user",
-        content: userPrompt,
-      },
-    ],
-    max_tokens: 7000,
-    temperature: 0.6,
-    top_p: 0.95,
-  };
 
   try {
-    const response = await fetch(endpoint, {
+    const response = await fetch(`${endpoint}/api/v1/ai`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "api-key": apiKey,
       },
-      body: JSON.stringify(requestBody),
+      body: JSON.stringify({ prompt: constructUserPrompt(config) }),
     });
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({ message: response.statusText }));
-      console.error("Erro da API:", errorData);
       throw new Error(
-        `Erro da API Azure OpenAI: ${response.status} ${
-          errorData.error?.message || errorData.message || response.statusText
-        }`
+        `Erro do backend: ${response.status} ${errorData.error?.message || errorData.message || response.statusText}`
       );
     }
 
     const data = await response.json();
-
-    if (!data.choices || data.choices.length === 0 || !data.choices[0].message || !data.choices[0].message.content) {
-      console.error("Resposta inesperada da API:", data);
-      throw new Error("A API não retornou o conteúdo esperado.");
+    if (!data.sections) {
+      throw new Error("O backend não retornou o conteúdo esperado.");
     }
-
-    let content = data.choices[0].message.content.trim();
-    content = content.replace(/^```json[\s\n]*|^```[\s\n]*|```$/gim, "").trim();
-
-    content = content.replace(/^```json[\s\n]*|^```[\s\n]*|```$/gim, "").trim();
-    let sections: Record<string, string> = {};
-    try {
-      sections = JSON.parse(content);
-    } catch (e) {
-      console.error("Falha ao fazer parse do JSON retornado pela API:", content);
-      throw new Error("O retorno da API não pôde ser interpretado como JSON válido.");
-    }
-    return { sections };
+    return { sections: data.sections };
   } catch (error) {
-    console.error("Erro ao chamar a API:", error);
-    if (error instanceof Error && error.message.startsWith("Erro da API:")) {
-      throw error;
-    }
-    throw new Error("Falha ao se comunicar com a API. Verifique a conexão e as configurações do endpoint.");
+    throw new Error("Falha ao se comunicar com o backend. Verifique a conexão e as configurações do endpoint.");
   }
 }

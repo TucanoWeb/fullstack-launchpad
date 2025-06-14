@@ -5,8 +5,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, ".", "");
   return {
     define: {
-      "process.env.AI_KEY": JSON.stringify(env.AI_KEY),
-      "process.env.AI_ENDPOINT": JSON.stringify(env.AI_ENDPOINT),
+      "process.env.VITE_BACKEND_URL": JSON.stringify(env.VITE_BACKEND_URL),
     },
     resolve: {
       alias: {

@@ -60,9 +60,9 @@ const App: React.FC = () => {
     setError(null);
     setBoilerplateSections(null);
 
-    if (!process.env.AI_KEY || !process.env.AI_ENDPOINT) {
+    if (!process.env.VITE_BACKEND_URL) {
       setError(
-        "A chave da API ou o endpoint não estão configurados nas variáveis de ambiente (AI_KEY, AI_ENDPOINT). Esta aplicação requer que estas chaves estejam disponíveis no ambiente de execução e não devem ser inseridas ou gerenciadas pela UI."
+        "O endpoint para seu backend não está configurado nas variáveis de ambiente (VITE_BACKEND_URL). Esta aplicação requer que estas chaves estejam disponíveis no ambiente de execução e não devem ser inseridas ou gerenciadas pela UI."
       );
       setIsLoading(false);
       return;

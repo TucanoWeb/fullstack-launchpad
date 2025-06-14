@@ -18,6 +18,12 @@ Tudo isso com um visual moderno, acessível e responsivo!
 
 ---
 
+## Acesse Online
+
+👉 [Deploy na Vercel: fullstack-launchpad.vercel.app](https://fullstack-launchpad.vercel.app)
+
+---
+
 ## O que são boilerplates?
 
 Boilerplates são estruturas de código base, já organizadas e configuradas, que servem como ponto de partida para novos projetos. Eles economizam tempo, evitam erros comuns e garantem boas práticas desde o início, permitindo que você foque no que realmente importa: as funcionalidades do seu produto.
@@ -52,20 +58,24 @@ Boilerplates são estruturas de código base, já organizadas e configuradas, qu
 
 **Pré-requisitos:** Node.js 18+
 
-```bash
-# Clone o repositório
- git clone https://github.com/TucanoWeb/fullstack-launchpad.git
- cd fullstack-launchpad
+### 1. Rode o backend (proxy seguro para IA)
 
-# Instale as dependências
- npm install
+```powershell
+cd backend
+npm install
+cp .env.example .env  # Edite o .env com sua chave e endpoint da IA
+npm run dev
+```
 
-# Configure as variáveis de ambiente
- cp .env.example .env
- # Edite o arquivo .env e insira sua chave e endpoint da OpenAI
+O backend rodará em http://localhost:3001
 
-# Rode o app
- npm run dev
+### 2. Rode o frontend
+
+```powershell
+cd ..
+npm install
+cp .env.example .env  # Edite o .env e configure VITE_BACKEND_URL se necessário
+npm run dev
 ```
 
 Acesse em [http://localhost:5173](http://localhost:5173)
@@ -93,6 +103,7 @@ MIT. Use, modifique e compartilhe à vontade.
 ## Comunidade & Contato
 
 - [Repositório no GitHub](https://github.com/TucanoWeb/fullstack-launchpad.git)
+- [Deploy na Vercel](https://fullstack-launchpad.vercel.app)
 - Dúvidas ou sugestões? Abra uma issue ou participe das discussões!
 
 ---

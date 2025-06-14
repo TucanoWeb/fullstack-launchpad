@@ -102,7 +102,8 @@ MIT. Use, modifique e compartilhe à vontade.
 
 ## Comunidade & Contato
 
-- [Repositório no GitHub](https://github.com/TucanoWeb/fullstack-launchpad.git)
+- [Repositório do Backend](https://github.com/TucanoWeb/fullstack-launchpad-backend)
+- [Repositório no GitHub (Frontend)](https://github.com/TucanoWeb/fullstack-launchpad.git)
 - [Deploy na Vercel](https://fullstack-launchpad.vercel.app)
 - Dúvidas ou sugestões? Abra uma issue ou participe das discussões!
 

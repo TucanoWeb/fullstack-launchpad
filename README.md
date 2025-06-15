@@ -8,11 +8,11 @@ Gere boilerplates completos para projetos web modernos com o poder da Inteligên
 
 O **Full-Stack Launchpad AI Pro** é uma plataforma open source que utiliza IA para criar, em segundos, a estrutura inicial (boilerplate) de aplicações full-stack. Você escolhe as tecnologias (frontend, backend, banco de dados, modelagem, biblioteca de estilização, etc.) e recebe:
 
-- Estrutura de diretórios pronta (tree)
-- Guias de configuração detalhados para cada stack
-- Comandos de terminal prontos para copiar e colar
-- Explicações para iniciantes sobre cada escolha
-- Dicas de boas práticas e links oficiais
+-   Estrutura de diretórios pronta (tree)
+-   Guias de configuração detalhados para cada stack
+-   Comandos de terminal prontos para copiar e colar
+-   Explicações para iniciantes sobre cada escolha
+-   Dicas de boas práticas e links oficiais
 
 Tudo isso com um visual moderno, acessível e responsivo!
 
@@ -32,25 +32,25 @@ Boilerplates são estruturas de código base, já organizadas e configuradas, qu
 
 ## Principais Funcionalidades
 
-- 🔥 **Geração automática de boilerplates** para stacks modernas (React, Vue, Angular, Svelte, Node, NestJS, Flask, Django, Spring Boot, PostgreSQL, MongoDB, etc.)
-- 🎨 **Escolha de biblioteca de estilização** (Tailwind, Chakra UI, Material UI, Styled Components, ou nenhuma)
-- 🐳 **Configuração Docker opcional**
-- 🧑‍💻 **Guias detalhados** para cada etapa, inclusive para iniciantes
-- 🌗 **Tema claro/escuro** e acessibilidade
-- 💡 **Explicações e dicas** sobre cada tecnologia
-- 💻 **Open source**: contribua, sugira, use à vontade!
+-   🔥 **Geração automática de boilerplates** para stacks modernas (React, Vue, Angular, Svelte, Node, NestJS, Flask, Django, Spring Boot, PostgreSQL, MongoDB, etc.)
+-   🎨 **Escolha de biblioteca de estilização** (Tailwind, Chakra UI, Material UI, Styled Components, ou nenhuma)
+-   🐳 **Configuração Docker opcional**
+-   🧑‍💻 **Guias detalhados** para cada etapa, inclusive para iniciantes
+-   🌗 **Tema claro/escuro** e acessibilidade
+-   💡 **Explicações e dicas** sobre cada tecnologia
+-   💻 **Open source**: contribua, sugira, use à vontade!
 
 ---
 
 ## Tecnologias Utilizadas
 
-- [React](https://react.dev/) + [Vite](https://vitejs.dev/) (frontend)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/) (UI base)
-- [Redux Toolkit](https://redux-toolkit.js.org/) (tema)
-- [Lucide Icons](https://lucide.dev/)
-- [react-markdown](https://github.com/remarkjs/react-markdown) (renderização de markdown)
-- [OpenAI API](https://platform.openai.com/) (ou Gemini, via configuração)
+-   [React](https://react.dev/) + [Vite](https://vitejs.dev/) (frontend)
+-   [TypeScript](https://www.typescriptlang.org/)
+-   [Tailwind CSS](https://tailwindcss.com/) (UI base)
+-   [Redux Toolkit](https://redux-toolkit.js.org/) (tema)
+-   [Lucide Icons](https://lucide.dev/)
+-   [react-markdown](https://github.com/remarkjs/react-markdown) (renderização de markdown)
+-   [OpenAI API](https://platform.openai.com/) (ou Gemini, via configuração)
 
 ---
 
@@ -102,10 +102,10 @@ MIT. Use, modifique e compartilhe à vontade.
 
 ## Comunidade & Contato
 
-- [Repositório do Backend](https://github.com/TucanoWeb/fullstack-launchpad-backend)
-- [Repositório no GitHub (Frontend)](https://github.com/TucanoWeb/fullstack-launchpad.git)
-- [Deploy na Vercel](https://fullstack-launchpad.vercel.app)
-- Dúvidas ou sugestões? Abra uma issue ou participe das discussões!
+-   [Repositório do Backend](https://github.com/TucanoWeb/fullstack-launchpad-backend)
+-   [Repositório no GitHub (Frontend)](https://github.com/TucanoWeb/fullstack-launchpad.git)
+-   [Deploy na Vercel](https://fullstack-launchpad.vercel.app)
+-   Dúvidas ou sugestões? Abra uma issue ou participe das discussões!
 
 ---
 

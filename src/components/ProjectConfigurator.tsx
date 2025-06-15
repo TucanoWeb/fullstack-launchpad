@@ -10,6 +10,7 @@ interface ProjectConfiguratorProps {
   onSubmit: () => void;
   isLoading: boolean;
   hasBoilerplate: boolean;
+  status: string
 }
 
 const SelectGroup: React.FC<{
@@ -48,7 +49,7 @@ const SelectGroup: React.FC<{
 );
 
 
-const ProjectConfigurator: React.FC<ProjectConfiguratorProps> = ({ config, onConfigChange, onSubmit, isLoading, hasBoilerplate }) => {
+const ProjectConfigurator: React.FC<ProjectConfiguratorProps> = ({ config, onConfigChange, onSubmit, isLoading, hasBoilerplate, status }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
     const checked = type === 'checkbox' ? (e.target as HTMLInputElement).checked : undefined;
@@ -141,7 +142,7 @@ const ProjectConfigurator: React.FC<ProjectConfiguratorProps> = ({ config, onCon
       </div>
 
       <div className="mt-auto pt-4"> {/* Pushes button to bottom */}
-        {isLoading || hasBoilerplate ? (
+        {isLoading || hasBoilerplate || status === "processing" ? (
           <div className="w-full flex flex-col items-center justify-center text-center p-4 rounded-lg bg-gh_light_input_bg dark:bg-gh_dark_input_bg border border-gh_light_border dark:border-gh_dark_border mt-2 animate-fade-in">
             <span className="text-base font-semibold text-gh_accent_green mb-1">Obrigado por usar o Full-Stack Launchpad AI Pro!</span>
             <span className="text-sm text-gh_light_text_secondary dark:text-gh_dark_text_secondary mb-2">Este projeto é <strong>open source</strong> e você pode contribuir ou acompanhar novidades no GitHub.</span>

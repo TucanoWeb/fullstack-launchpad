@@ -40,6 +40,7 @@ const App: React.FC = () => {
     const [status, setStatus] = useState<string>("");
     const [manualId, setManualId] = useState<string>("");
     const [polling, setPolling] = useState<NodeJS.Timeout | null>(null);
+    const [copy, setCopy] = useState<boolean>(false);
 
     // start block ==== THEME
     const currentTheme = useSelector((state: RootState) => state.theme.currentTheme);
@@ -104,6 +105,7 @@ const App: React.FC = () => {
         setProgress({});
         setStatus("");
         pollStatus(manualId);
+        setCopy(false);
     };
 
     const pollStatus = (id: string) => {
@@ -278,6 +280,16 @@ const App: React.FC = () => {
                             {requestId && (
                                 <div className="text-xs font-semibold text-gh_accent_yellow mb-1">
                                     <strong>ID da requisição:</strong> {requestId}
+                                    <button
+                                        onClick={() => {
+                                            navigator.clipboard.writeText(requestId);
+                                            setCopy(true);
+                                        }}
+                                        className="ml-2 text-gh_accent_green hover:text-gh_accent_green/80 transition-colors "
+                                        aria-label="Copiar ID para a área de transferência"
+                                    >
+                                        {!copy ? "📋 Copiar" : "✅ Copiado"}
+                                    </button>
                                 </div>
                             )}
                             {/* Progresso das partes */}

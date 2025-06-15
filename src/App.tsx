@@ -41,6 +41,7 @@ const App: React.FC = () => {
     const [manualId, setManualId] = useState<string>("");
     const [polling, setPolling] = useState<NodeJS.Timeout | null>(null);
 
+    // start block ==== THEME
     const currentTheme = useSelector((state: RootState) => state.theme.currentTheme);
     const dispatch: AppDispatch = useDispatch();
 
@@ -67,11 +68,13 @@ const App: React.FC = () => {
     const handleThemeChange = (theme: Theme) => {
         dispatch(setThemeAction(theme));
     };
+    // end block ==== THEME
 
     const handleConfigChange = useCallback((newConfig: Partial<ProjectConfiguration>) => {
         setProjectConfig((prevConfig) => ({ ...prevConfig, ...newConfig }));
     }, []);
 
+    // create new request
     const handleSubmit = async () => {
         setIsLoading(true);
         setError(null);
@@ -91,70 +94,58 @@ const App: React.FC = () => {
         }
     };
 
-    const pollStatus = useCallback(
-        (id: string) => {
-            setIsLoading(true);
-            setError(null);
-            if (polling) clearInterval(polling);
-            const interval = setInterval(async () => {
-                try {
-                    const data = await getBoilerplateStatus(id);
-                    setStatus(data.status);
-                    // Marca partes já preenchidas
-                    const prog: Record<string, boolean> = {};
-                    PARTS.forEach((p) => {
-                        prog[p.key] = !!data[p.key];
-                    });
-                    setProgress(prog);
-                    console.log(prog);
-                    // Se todas as partes estiverem preenchidas, monta o objeto final
-                    if (data.status === "done") {
-                        clearInterval(interval);
-                        setPolling(null);
-                        setIsLoading(false);
-                        setBoilerplateSections({
-                            overview: data.overview,
-                            techRationale: data.tech_rationale,
-                            directoryStructure: data.directory_structure,
-                            frontendGuide: data.frontend_guide,
-                            backendGuide: data.backend_guide,
-                            databaseGuide: data.database_guide,
-                            dockerGuide: data.docker_guide,
-                            nextSteps: data.next_steps
-                        });
-                    } else if (data.status === "error") {
-                        clearInterval(interval);
-                        setPolling(null);
-                        setIsLoading(false);
-                        setError(data.error || "Erro desconhecido ao gerar boilerplate.");
-                    } else if (data.status === "pending" && !data.error) {
-                        // Continua polling
-                        setIsLoading(true);
-                    } else {
-                        clearInterval(interval);
-                        setPolling(null);
-                        setIsLoading(false);
-                    }
-                } catch (err) {
-                    clearInterval(interval);
-                    setPolling(null);
-                    setIsLoading(false);
-                    setError("Erro ao consultar status da requisição.");
-                }
-            }, 10000);
-            setPolling(interval);
-        },
-        [polling, boilerplateSections, progress]
-    );
-
+    // send request by id
     const handleManualIdSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!manualId) return;
+
         setRequestId(manualId);
         setBoilerplateSections(null);
         setProgress({});
         setStatus("");
         pollStatus(manualId);
+    };
+
+    const pollStatus = (id: string) => {
+        setIsLoading(true);
+        setError(null);
+
+        const interval = setInterval(async () => {
+            try {
+                const data = await getBoilerplateStatus(id);
+                setStatus(data.status);
+                const prog: Record<string, boolean> = {};
+                PARTS.forEach((p) => {
+                    prog[p.key] = !!data[p.key];
+                });
+                setProgress(prog);
+                if (data.status === "done") {
+                    clearInterval(interval);
+                    setPolling(null);
+                    setIsLoading(false);
+                    setBoilerplateSections({
+                        overview: data.overview,
+                        techRationale: data.tech_rationale,
+                        directoryStructure: data.directory_structure,
+                        frontendGuide: data.frontend_guide,
+                        backendGuide: data.backend_guide,
+                        databaseGuide: data.database_guide,
+                        dockerGuide: data.docker_guide,
+                        nextSteps: data.next_steps
+                    });
+                } else if (data.status === "error") {
+                    clearInterval(interval);
+                    setPolling(null);
+                    setIsLoading(false);
+                    setError(data.error || "Erro desconhecido ao gerar boilerplate.");
+                }
+            } catch (err) {
+                clearInterval(interval);
+                setPolling(null);
+                setIsLoading(false);
+                setError("Erro ao consultar status da requisição.");
+            }
+        }, 10000);
     };
 
     useEffect(() => {
@@ -163,6 +154,7 @@ const App: React.FC = () => {
         };
     }, [polling]);
 
+    // render
     return (
         <div className="min-h-screen flex flex-col bg-gh_light_bg dark:bg-gh_dark_bg pt-4">
             <header className="gh-header top-0 z-30">

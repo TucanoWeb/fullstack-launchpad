@@ -364,6 +364,7 @@ const App: React.FC = () => {
                             boilerplateSections={boilerplateSections}
                             isLoading={isLoading}
                             error={error}
+                            requestId={requestId}
                         />
                     </div>
                 </main>

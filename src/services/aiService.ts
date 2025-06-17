@@ -37,6 +37,8 @@ Configurações do Projeto Solicitadas:
 
 É fundamental que a resposta seja sem erros de sintaxe, e que cada campo seja preenchido com informações úteis e práticas para o usuário. O guia deve ser claro, passo a passo, e acessível para iniciantes em desenvolvimento full-stack. 
 
+Certifique-se de não envolver a resposta em um bloco markdown. Apenas utilize o markdown para formatação da resposta, como blocos de código, listas, etc.
+
 CAMPO A SER RESPONDIDO:
 
 `;

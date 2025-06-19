@@ -207,11 +207,12 @@ const GeneratedCodeViewer: React.FC<GeneratedCodeViewerProps> = ({
                                 id={`section-content-${index}`}
                                 className="p-4 md:p-5 flex-grow min-h-0 animate-fade-in"
                             >
-                                {section.title === sectionTitles.directoryStructure ? (
+                                {/* {section.title === sectionTitles.directoryStructure ? (
                                     <DirectoryTreeRenderer tree={section.content} />
                                 ) : (
                                     <ContentRenderer markdownContent={section.content} />
-                                )}
+                                    )} */}
+                                <ContentRenderer markdownContent={section.content} />
                             </div>
                         )}
                     </div>
